@@ -33,7 +33,7 @@ function preprocessImage(imageElement) {
 }
 
 function softmax(logits) {
-  const max = Math.max(...logits);
+  const max = logits.reduce((a, b) => (a > b ? a : b));
   const exps = logits.map(x => Math.exp(x - max));
   const sum = exps.reduce((a, b) => a + b, 0);
   return exps.map(x => x / sum);

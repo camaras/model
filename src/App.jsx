@@ -50,6 +50,7 @@ export default function App() {
   function handleImageUpload(e) {
     const file = e.target.files?.[0];
     if (!file) return;
+    if (imageSrc) URL.revokeObjectURL(imageSrc);
     const url = URL.createObjectURL(file);
     setImageSrc(url);
     setImageName(file.name);
