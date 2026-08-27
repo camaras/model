@@ -16,6 +16,7 @@ function preprocessImage(imageElement) {
   canvas.width = INPUT_SIZE;
   canvas.height = INPUT_SIZE;
   const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('Failed to acquire 2D canvas context for preprocessing.');
   ctx.drawImage(imageElement, 0, 0, INPUT_SIZE, INPUT_SIZE);
   const { data } = ctx.getImageData(0, 0, INPUT_SIZE, INPUT_SIZE);
 
