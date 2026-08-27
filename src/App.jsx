@@ -33,6 +33,7 @@ export default function App() {
   async function handleModelUpload(e) {
     const file = e.target.files?.[0];
     if (!file) return;
+    e.target.value = '';
     setModelError('');
     setModelLoading(true);
     try {
@@ -41,7 +42,8 @@ export default function App() {
       setModelName(file.name);
       setActiveStep(1);
     } catch (err) {
-      setModelError(`Failed to load model: ${err.message}`);
+      const message = err instanceof Error ? err.message : String(err);
+      setModelError(`Failed to load model: ${message}`);
     } finally {
       setModelLoading(false);
     }
