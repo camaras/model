@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import {
-  Box, Button, Card, CardContent, CardMedia, Chip,
+  Box, Button, Card, CardMedia, Chip,
   CircularProgress, Container, LinearProgress, Paper,
   Step, StepLabel, Stepper, Typography, Alert
 } from '@mui/material';
