@@ -52,6 +52,7 @@ export default function App() {
   function handleImageUpload(e) {
     const file = e.target.files?.[0];
     if (!file) return;
+    e.target.value = '';
     if (imageSrc) URL.revokeObjectURL(imageSrc);
     const url = URL.createObjectURL(file);
     setImageSrc(url);
@@ -62,6 +63,13 @@ export default function App() {
     img.onload = () => {
       setImageEl(img);
       setActiveStep(2);
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      setImageSrc('');
+      setImageName('');
+      setImageEl(null);
+      setInferError('Failed to load image.');
     };
     img.src = url;
   }
